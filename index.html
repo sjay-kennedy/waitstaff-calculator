@@ -1,39 +1,132 @@
 <!doctype html>
 <html lang="en" ng-app='myApp'>
 <head>
-  <meta charset="UTF-8">
-  <title>Multiplication Table</title>
-   <link rel="stylesheet" href="myApp.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js" type="text/javascript"></script>
+    <meta charset="UTF-8">
+    <title>Waitstaff Calculator</title>
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="myApp.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js" type="text/javascript"></script>
+
 </head>
 <body>
-  <div ng-controller="DisplayCtrl">
-    <div ng-if="content">{{ content }}</div>
-    <div ng-if="!content">...</div>
-  </div>
-  <div  ng-controller="MultiplicationCtrl" initial-number-limit="10">
-    <table>
-      <input type="number" ng-model="numberLimit" placeholder="Enter a number" />
-      <tr ng-repeat="numberA in numbers">
-        <td ng-repeat="numberB in numbers"
-            ng-click="setActiveNumber(compute(numberA, numberB))"
-            ng-mouseleave="clearActiveFactors()"
-            ng-mouseover="setActiveFactors(numberA, numberB)" 
-            ng-class="{hover: matchesFactor(numberA, numberB)}">
+ 
+    <div  ng-controller="CalculatorCtrl" initial-number-limit="10">
+        <div class="container">
+            <div class="well clearfix" >
+            <!--  Meal Details -->
+                <h1 class="text-center">Waitstaff Calculator</h1>
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                <div class="panel panel-default ">
+                
+                    <div class="panel-heading">Enter the Meal Details</div>
+                        <div class="panel-body details">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                  <label for="meal" class="col-sm-6 control-label">Base Meal Price: </label>
+                                  <div class="col-sm-5">
+                                    <input type="number" class="form-control" id="meal" placeholder="$">
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label for="tax" class="col-sm-6 control-label">Tax Rate: </label>
+                                  <div class="col-sm-5">
+                                    <input type="number" class="form-control" id="tax" placeholder="%">
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label for="tip" class="col-sm-6 control-label">Tip Percentage: </label>
+                                  <div class="col-sm-5">
+                                    <input type="number" class="form-control" id="tip" placeholder="%">
+                                  </div>
+                                </div>
+                                <div class="center-block details-btns">
+                                    <div class="">
+                                        <div class="btn-group ">
+                                            <button type="button" class="btn btn-default">Submit</button>
+                                         </div>
+                                         <div class="btn-group ">
+                                            <button type="button" class="btn btn-default">Cancel</button>
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>  
+                    </div>
+                </div>
+                <!--Customer Charges -->
+                <div class="col-sm-6 col-md-6 col-lg-6">
+                    <div class="panel panel-default ">
+                    
+                        <div class="panel-heading">Customer Charges</div>
+                        <div class="panel-body">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                  <label for="subtotal" class="col-sm-6 control-label">Subtotal:</label>
+                                  <div class="col-sm-5">
+                                    <input type="number" class="form-control" id="subtotal" readonly >
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label for="tips" class="col-sm-6 control-label">Tip:</label>
+                                  <div class="col-sm-5">
+                                    <input type="number" class="form-control" id="tips" readonly >
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label for="total" class="col-sm-6 control-label">Total:</label>
+                                  <div class="col-sm-5">
+                                    <input type="number" class="form-control" id="total" readonly >
+                                  </div>
+                                </div>
 
-              {{ compute(numberA, numberB)  }}
-        </td>
-      </tr>
-     </table>
-  </div>
-  <div ng-controller="DisplayCtrl">
-    <div ng-if="content">
-      The value you have selected to display is: {{ content }}
+                                
+                            </form>
+                            
+                        </div>  
+                    </div>
+              
+                    <!-- My Earnings Info -->
+                
+                    <div class="panel panel-default">
+                    
+                        <div class="panel-heading">My Earnings Info</div>
+                        <div class="panel-body">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                  <label for="tip-total" class="col-sm-6 control-label">Tip Total:</label>
+                                  <div class="col-sm-5">
+                                    <input type="number" class="form-control" id="tip-total" readonly >
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label for="meal-count" class="col-sm-6 control-label">Meal Count:</label>
+                                  <div class="col-sm-5">
+                                    <input type="number" class="form-control" id="meal-count" readonly >
+                                  </div>
+                                </div>
+                                <div class="form-group">
+                                  <label for="average-tip" class="col-sm-6 control-label">Average Tip Per Meal:</label>
+                                  <div class="col-sm-5">
+                                    <input type="number" class="form-control" id="average-tip" readonly>
+                                  </div>
+                                </div>
+
+                                
+                            </form>
+                            
+                        </div>  
+                    </div>
+                </div>
+                <div class="col-sm-12 clearfix">
+                    <button type="submit" class="btn btn-default pull-right">Reset</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <div ng-if="!content">
-      You have not selected a value to display
-    </div>
-  </div>
   <script src="myApp.js" type="text/javascript"></script>
 </body>
 </html>

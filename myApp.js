@@ -1,10 +1,6 @@
 angular.module('myApp', [])
-.controller('DisplayCtrl', function($scope) {
-    $scope.$on('displayData', function(event, data) {
-      $scope.content = data;
-    });
- })
-.controller('MultiplicationCtrl', function($scope, $attrs, $rootScope) {
+
+.controller('CalculatorCtrl', function($scope, $attrs, $rootScope) {
 
 	$scope.setActiveNumber = function(number) {
 		$rootScope.$broadcast('displayData', number);
