@@ -4,7 +4,7 @@ angular.module('myApp', [])
 
 	
 	$scope.tipArray = [];
-	$scope.mealCount = 0;
+	$scope.mealCount = null;
 	$scope.submit = function(mealPrice,taxRate,tipPercentage) {
 	
 		var mealPrice = mealPrice;
