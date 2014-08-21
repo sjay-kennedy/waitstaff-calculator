@@ -2,37 +2,52 @@ angular.module('myApp', [])
 
 .controller('CalculatorCtrl', function($scope, $attrs, $rootScope) {
 
-	$scope.setActiveNumber = function(number) {
-		$rootScope.$broadcast('displayData', number);
+	
+	$scope.tipArray = [];
+	$scope.mealCount = 0;
+	$scope.submit = function(mealPrice,taxRate,tipPercentage) {
+	
+		var mealPrice = mealPrice;
+		var taxRate = taxRate;
+		var tipPercentage = tipPercentage;
+		var tax = mealPrice * (taxRate / 100);
+		$scope.subtotal = mealPrice + tax;
+		$scope.tip = $scope.subtotal * (tipPercentage / 100);
+		$scope.total = $scope.subtotal + $scope.tip;
+		$scope.mealCount = $scope.mealCount +1;
+		// figure average tip
+		$scope.tipArray.push($scope.tip);
+		$scope.tipTotal=0;
+		for(var i in $scope.tipArray) { $scope.tipTotal += $scope.tipArray[i]; }
+		$scope.averageTip = $scope.tipTotal / $scope.mealCount;
+		// reset meal details
+		$scope.mealPrice = null;
+		$scope.taxRate = null;
+		$scope.tipPercentage = null;
+		
 	};
-	function populateNumbers(x) {
-		var numbers = [];
-		for(var i=0; i<x; i++) {
-	  		numbers[i] = i + 1; 
-		}
-		return numbers;
-	}
-	$scope.compute = function(a,b) {
-		//console.log("compute", a, b);
-		return a * b;
-	}
-	$scope.$watch('numberLimit', function(limit) {
-		$scope.numbers = populateNumbers(limit);
-	});
-	$scope.numberLimit = $attrs.initialNumberLimit || 10;
+	$scope.reset = function() {
+		// reset all values
+		$scope.subtotal = null;
+		$scope.tip = null;
+		$scope.total = null;
+		$scope.mealCount = null;
+		$scope.tipArray = [];
+		$scope.tipTotal=null;
+		$scope.averageTip = null;
+		$scope.mealPrice = null;
+		$scope.taxRate = null;
+		$scope.tipPercentage = null;
+	
+		
+	};
+	$scope.cancelDetails = function() {
+		// reset meal details
+		$scope.mealPrice = null;
+		$scope.taxRate = null;
+		$scope.tipPercentage = null;
+	
+		
+	};
 
-	var activeFactorA, activeFactorB;
-	$scope.setActiveFactors = function(a, b) {
-		activeFactorA = a;
-		activeFactorB = b;
-		console.log("set active factor a, b", activeFactorA , activeFactorB);
-	};
-
-	$scope.matchesFactor = function (a, b) {
-		console.log("matches factor", a === activeFactorA || b === activeFactorB);
-		return a === activeFactorA || b === activeFactorB;
-	};
-	$scope.clearActiveFactors = function() {
-		activeFactorA = activeFactorB = null; 
-	};
 });

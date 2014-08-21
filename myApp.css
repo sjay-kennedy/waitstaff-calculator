@@ -7,6 +7,11 @@ label {
 	font-weight:normal;
 	white-space: nowrap;
 }
+
+.btn:focus, .btn:active:focus, .btn.active:focus {
+	outline:0;
+}
+
 .well {
 	margin:30px auto 30px auto;
 	background-color:#eee;
