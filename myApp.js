@@ -7,9 +7,7 @@ angular.module('myApp', [])
 	$scope.mealCount = null;
 	$scope.submit = function(mealPrice,taxRate,tipPercentage) {
 	
-		var mealPrice = mealPrice;
-		var taxRate = taxRate;
-		var tipPercentage = tipPercentage;
+		
 		var tax = mealPrice * (taxRate / 100);
 		$scope.subtotal = mealPrice + tax;
 		$scope.tip = $scope.subtotal * (tipPercentage / 100);

@@ -6,14 +6,12 @@
 
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="myApp.css">
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js" type="text/javascript"></script>
+    
 
 </head>
 <body>
  
-    <div  ng-controller="CalculatorCtrl" initial-number-limit="10">
+    <div  ng-controller="CalculatorCtrl" >
         <div class="container">
             <div class="well clearfix" >
             <!--  Meal Details -->
@@ -63,23 +61,26 @@
                     
                         <div class="panel-heading">Customer Charges</div>
                         <div class="panel-body">
-                            <form class="form-horizontal" role="form">
+                            <form class="form-horizontal" role="form" novalidate>
                                 <div class="form-group">
                                   <label for="subtotal" class="col-sm-6 control-label">Subtotal</label>
                                   <div class="col-sm-5">
-                                    <input type="number" class="form-control" id="subtotal" value="{{subtotal | number:2}}" readonly >
+                                    <input type="text" class="form-control" id="subtotal" value="{{subtotal | number:2}}" readonly >
+                                    
                                   </div>
                                 </div>
                                 <div class="form-group">
                                   <label for="tips" class="col-sm-6 control-label">Tip</label>
                                   <div class="col-sm-5">
-                                    <input type="number" class="form-control" id="tips" value="{{tip | number:2}}" readonly >
+                                    <input type="text" class="form-control" id="tips" value="{{tip | number:2}}" readonly >
+                                   
                                   </div>
                                 </div>
                                 <div class="form-group">
                                   <label for="total" class="col-sm-6 control-label">Total</label>
                                   <div class="col-sm-5">
-                                    <input type="number" class="form-control" id="total" value="{{total | number:2}}" readonly >
+                                    <input type="text" class="form-control" id="total" value="{{total | number:2}}" readonly >
+                                   
                                   </div>
                                 </div>
 
@@ -95,23 +96,23 @@
                     
                         <div class="panel-heading">My Earnings Info</div>
                         <div class="panel-body">
-                            <form class="form-horizontal" role="form">
+                            <form class="form-horizontal" role="form" novalidate>
                                 <div class="form-group">
                                   <label for="tip-total" class="col-sm-6 control-label">Tip Total</label>
                                   <div class="col-sm-5">
-                                    <input type="number" class="form-control" id="tip-total"  value="{{tipTotal | number:2}}" readonly >
+                                    <input type="text" class="form-control" id="tip-total"  value="{{tipTotal | number:2 }}" readonly >
                                   </div>
                                 </div>
                                 <div class="form-group">
                                   <label for="meal-count" class="col-sm-6 control-label">Meal Count</label>
                                   <div class="col-sm-5">
-                                    <input type="number" class="form-control" id="meal-count"  value="{{mealCount}}" readonly >
+                                    <input type="text" class="form-control" id="meal-count"  value="{{mealCount | number:2}}" readonly >
                                   </div>
                                 </div>
                                 <div class="form-group">
                                   <label for="average-tip" class="col-sm-6 control-label">Average Tip Per Meal</label>
                                   <div class="col-sm-5">
-                                    <input type="number" class="form-control" id="average-tip" value="{{averageTip | number:2}}" readonly>
+                                    <input type="text" class="form-control" id="average-tip" value="{{averageTip | number:2}}" readonly>
                                   </div>
                                 </div>
 
@@ -127,6 +128,9 @@
             </div>
         </div>
     </div>
-  <script src="myApp.js" type="text/javascript"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js" type="text/javascript"></script>
+  <script src="myApp.js"></script>
 </body>
 </html>
